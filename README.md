@@ -1,0 +1,2 @@
+# SecondApplicationForAzure
+Angular + .Net + Database
