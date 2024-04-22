@@ -1,0 +1,6 @@
+@SecondApplicationForAzure.Server_HostAddress = http://localhost:5273
+
+GET {{SecondApplicationForAzure.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
