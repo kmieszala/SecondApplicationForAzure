@@ -4,3 +4,5 @@
 /secondapplicationforazure.client/.vscode
 /SecondApplicationForAzure.Server/.vs
 /SecondApplicationForAzure.Server/bin
+secondapplicationforazure.client/package-lock.json
+/SecondApplicationForAzure.Server/Properties/PublishProfiles
