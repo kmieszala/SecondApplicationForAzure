@@ -1,5 +1,5 @@
 # SecondApplicationForAzure
-Angular + .Net (+ Database - not yet)
+Angular + .Net + Database (SqlServer on Azure)
 
 Website:
 https://km-secondappclient.azurewebsites.net
