@@ -5,4 +5,10 @@
 /SecondApplicationForAzure.Server/.vs
 /SecondApplicationForAzure.Server/bin
 secondapplicationforazure.client/package-lock.json
+SecondApplicationForAzure.Server/Properties/PublishProfiles/KM-SecondAppAPI - FTP.pubxml
 /SecondApplicationForAzure.Server/Properties/PublishProfiles
+SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.csproj.user
+SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.csproj.user
+SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.sln
+/SecondApplicationForAzure.Model/bin
+/SecondApplicationForAzure.Model/obj

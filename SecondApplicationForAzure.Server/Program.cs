@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SecondApplicationForAzure.Server.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -40,4 +43,16 @@ app.MapControllers();
 
 //app.MapFallbackToFile("/index.html");
 
+ApplyMigration();
+
 app.Run();
+
+void ApplyMigration()
+{
+    var dbFactory = new SecondAppDbContextFactory();
+
+    using (var db = dbFactory.CreateDbContext(null))
+    {
+        db.Database.Migrate();
+    }
+}
