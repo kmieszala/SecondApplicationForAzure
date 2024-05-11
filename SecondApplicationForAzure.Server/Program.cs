@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using SecondApplicationForAzure.Model;
+using SecondApplicationForAzure.Server.Configuration;
 using SecondApplicationForAzure.Server.Data;
+using SecondApplicationForAzure.Services.Configuration;
+using SecondApplicationForAzure.Services.Services.Students;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,6 +22,14 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddDbContext<SecondAppDbContext>(options =>
+    options.EnableSensitiveDataLogging(true)
+        .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty
+    .ToString()));
+
+AddServices(builder);
+AddAutoMappers(builder);
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Go to \"/swagger/index.html\"");
@@ -28,20 +37,15 @@ app.MapGet("/", () => "Go to \"/swagger/index.html\"");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
 app.UseSwagger();
 app.UseSwaggerUI();
-//}
+
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-//app.MapFallbackToFile("/index.html");
 
 ApplyMigration();
 
@@ -51,8 +55,21 @@ void ApplyMigration()
 {
     var dbFactory = new SecondAppDbContextFactory();
 
+    Console.WriteLine("Migration - START");
     using (var db = dbFactory.CreateDbContext(null))
     {
         db.Database.Migrate();
     }
+    Console.WriteLine("Migration - STOP");
+}
+
+void AddAutoMappers(WebApplicationBuilder builder)
+{
+    IServiceCollection serviceCollection = builder.Services.AddAutoMapper(
+        typeof(AutoMapperWebConfig),
+        typeof(AutoMapperServiceConfig));
+}
+void AddServices(WebApplicationBuilder builder)
+{
+    builder.Services.AddScoped<IStudentService, StudentService>();
 }

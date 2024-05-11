@@ -12,3 +12,6 @@ SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.csproj.user
 SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.sln
 /SecondApplicationForAzure.Model/bin
 /SecondApplicationForAzure.Model/obj
+SecondApplicationForAzure.Server/appsettings.Development.json
+/SecondApplicationForAzure.Services/bin
+/SecondApplicationForAzure.Services/obj

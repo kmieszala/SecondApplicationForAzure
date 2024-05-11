@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SecondApplicationForAzure.Model\SecondApplicationForAzure.Model.csproj" />
+    <ProjectReference Include="..\SecondApplicationForAzure.Services\SecondApplicationForAzure.Services.csproj" />
   </ItemGroup>
 
   <!--<ItemGroup>
