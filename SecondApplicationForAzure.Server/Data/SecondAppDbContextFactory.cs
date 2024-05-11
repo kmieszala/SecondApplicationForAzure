@@ -12,6 +12,10 @@ public class SecondAppDbContextFactory : IDesignTimeDbContextFactory<SecondAppDb
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
+#if DEBUG
+        builder.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
+#endif
+
         IConfigurationRoot configuration = builder.Build();
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         var optionsBuilder = new DbContextOptionsBuilder<SecondAppDbContext>();
