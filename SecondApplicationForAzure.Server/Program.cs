@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using SecondApplicationForAzure.Common.Configuration;
 using SecondApplicationForAzure.Model;
 using SecondApplicationForAzure.Server.Configuration;
 using SecondApplicationForAzure.Server.Data;
 using SecondApplicationForAzure.Services.Configuration;
+using SecondApplicationForAzure.Services.Services.Logs;
 using SecondApplicationForAzure.Services.Services.Students;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +29,7 @@ builder.Services.AddDbContext<SecondAppDbContext>(options =>
         .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty
     .ToString()));
 
+AddConfigurationSections(builder);
 AddServices(builder);
 AddAutoMappers(builder);
 
@@ -69,7 +72,16 @@ void AddAutoMappers(WebApplicationBuilder builder)
         typeof(AutoMapperWebConfig),
         typeof(AutoMapperServiceConfig));
 }
+
 void AddServices(WebApplicationBuilder builder)
 {
+    builder.Services.AddScoped<ILogService, LogService>();
     builder.Services.AddScoped<IStudentService, StudentService>();
+}
+void AddConfigurationSections(WebApplicationBuilder builder)
+{
+    builder.Services.AddOptions<AzureServiceBusSection>()
+        .BindConfiguration(AzureServiceBusSection.SectionName)
+        .ValidateDataAnnotations()
+        .ValidateOnStart();
 }

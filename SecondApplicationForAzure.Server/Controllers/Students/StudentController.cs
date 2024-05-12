@@ -20,21 +20,21 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetCompanies()
+    public async Task<IActionResult> GetStudents()
     {
         var result = await _studentService.GetStudentsAsync();
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddCompany(AddStudentVM model)
+    public async Task<IActionResult> AddStudent(AddStudentVM model)
     {
         var result = await _studentService.AddStudentAsync(model.Name);
         return Ok(result);
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditCompany(StudentVM model)
+    public async Task<IActionResult> EditStudent(StudentVM model)
     {
         var result = await _studentService.EditStudentAsync(_mapper.Map<StudentModel>(model));
         return Ok(result);

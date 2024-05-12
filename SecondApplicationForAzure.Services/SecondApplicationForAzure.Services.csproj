@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.17.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SecondApplicationForAzure.Common\SecondApplicationForAzure.Common.csproj" />
     <ProjectReference Include="..\SecondApplicationForAzure.Model\SecondApplicationForAzure.Model.csproj" />
   </ItemGroup>
 

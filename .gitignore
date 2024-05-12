@@ -15,3 +15,5 @@ SecondApplicationForAzure.Server/SecondApplicationForAzure.Server.sln
 SecondApplicationForAzure.Server/appsettings.Development.json
 /SecondApplicationForAzure.Services/bin
 /SecondApplicationForAzure.Services/obj
+/SecondApplicationForAzure.Common/obj
+/SecondApplicationForAzure.Common/bin
