@@ -35,7 +35,7 @@ public class StudentService : IStudentService
         await _context.Students.AddAsync(student);
         await _context.SaveChangesAsync();
 
-        _logService.LogAddAsync($"Add Student {name}, ID {student.Id}");
+        _ = _logService.LogAddAsync($"Add Student {name}, ID {student.Id}");
 
         return _mapper.Map<StudentModel>(student);
     }
@@ -51,7 +51,7 @@ public class StudentService : IStudentService
             return await AddStudentAsync(studentModel.Name);
         }
 
-        _logService.LogEditAsync($"Edit Student {studentModel.Name}, ID {studentModel.Id}");
+        _ = _logService.LogEditAsync($"Edit Student {studentModel.Name}, ID {studentModel.Id}");
 
         studentDb.Name = studentModel.Name;
         await _context.SaveChangesAsync();
@@ -61,7 +61,7 @@ public class StudentService : IStudentService
 
     public async Task<List<StudentModel>> GetStudentsAsync()
     {
-        _logService.LogGetListAsync($"Get students list");
+        _ = _logService.LogGetListAsync($"Get students list");
 
         var studentsList = await _context.Students.ToListAsync();
         return _mapper.Map<List<StudentModel>>(studentsList);

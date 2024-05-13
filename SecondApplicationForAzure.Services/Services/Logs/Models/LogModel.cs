@@ -3,4 +3,4 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SecondApplicationForAzure.Services.Services.Logs.Models;
 
-public record LogModel(EventTypeEnum LogType, [Required] string Message);
+public record LogModel(EventTypeEnum LogType, [Required] string Message, string ApppName);

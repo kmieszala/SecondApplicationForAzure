@@ -7,7 +7,10 @@ public class AzureServiceBusSection
     public const string SectionName = "AzureServiceBus";
 
     [Required]
-    public required string NamespaceConnectionString { get; init; }
+    public required string SendNamespaceConnectionString { get; init; }
+
+    [Required]
+    public required string ListenNamespaceConnectionString { get; init; }
 
     [Required]
     public required string QueueName { get; init; }

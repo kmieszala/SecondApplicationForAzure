@@ -3,6 +3,7 @@ using SecondApplicationForAzure.Common.Configuration;
 using SecondApplicationForAzure.Model;
 using SecondApplicationForAzure.Server.Configuration;
 using SecondApplicationForAzure.Server.Data;
+using SecondApplicationForAzure.Server.Services;
 using SecondApplicationForAzure.Services.Configuration;
 using SecondApplicationForAzure.Services.Services.Logs;
 using SecondApplicationForAzure.Services.Services.Students;
@@ -26,8 +27,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddDbContext<SecondAppDbContext>(options =>
     options.EnableSensitiveDataLogging(true)
-        .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty
-    .ToString()));
+        .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty.ToString()), ServiceLifetime.Singleton);
+
+// adds a background task - consumer downloading events from the Azure Service Bus queue
+builder.Services.AddHostedService<LogConsumerService>();
 
 AddConfigurationSections(builder);
 AddServices(builder);
@@ -75,7 +78,8 @@ void AddAutoMappers(WebApplicationBuilder builder)
 
 void AddServices(WebApplicationBuilder builder)
 {
-    builder.Services.AddScoped<ILogService, LogService>();
+    builder.Services.AddScoped<ILogService>(x =>
+        ActivatorUtilities.CreateInstance<LogService>(x, "SecondApp.Api"));
     builder.Services.AddScoped<IStudentService, StudentService>();
 }
 void AddConfigurationSections(WebApplicationBuilder builder)

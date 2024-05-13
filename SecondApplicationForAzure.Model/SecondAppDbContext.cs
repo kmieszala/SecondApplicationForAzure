@@ -11,4 +11,6 @@ public class SecondAppDbContext : DbContext
     }
 
     public virtual DbSet<Student> Students { get; set; }
+
+    public virtual DbSet<Log> Logs { get; set; }
 }

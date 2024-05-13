@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SecondApplicationForAzure.Common\SecondApplicationForAzure.Common.csproj" />
+  </ItemGroup>
+
 </Project>
