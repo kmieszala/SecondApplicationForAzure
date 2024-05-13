@@ -1,5 +1,7 @@
 # SecondApplicationForAzure
-Angular + .Net + Database (SqlServer on Azure)
+Angular + .Net + Database (SqlServer on Azure) + Angular Service Bus
+
+This is just an example to learn something about Azure, so the code is not perfect.
 
 Website:
 https://km-secondappclient.azurewebsites.net
