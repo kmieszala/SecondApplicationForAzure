@@ -5,6 +5,7 @@ using SecondApplicationForAzure.Server.Configuration;
 using SecondApplicationForAzure.Server.Data;
 using SecondApplicationForAzure.Server.Services;
 using SecondApplicationForAzure.Services.Configuration;
+using SecondApplicationForAzure.Services.Services.Files;
 using SecondApplicationForAzure.Services.Services.Logs;
 using SecondApplicationForAzure.Services.Services.Students;
 
@@ -81,11 +82,18 @@ void AddServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<ILogService>(x =>
         ActivatorUtilities.CreateInstance<LogService>(x, "SecondApp.Api"));
     builder.Services.AddScoped<IStudentService, StudentService>();
+    builder.Services.AddScoped<IFileService, FileService>();
 }
+
 void AddConfigurationSections(WebApplicationBuilder builder)
 {
     builder.Services.AddOptions<AzureServiceBusSection>()
         .BindConfiguration(AzureServiceBusSection.SectionName)
+        .ValidateDataAnnotations()
+        .ValidateOnStart();
+
+    builder.Services.AddOptions<AzureStorageBlobSection>()
+        .BindConfiguration(AzureStorageBlobSection.SectionName)
         .ValidateDataAnnotations()
         .ValidateOnStart();
 }
