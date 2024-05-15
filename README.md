@@ -1,5 +1,5 @@
 # SecondApplicationForAzure
-Angular + .Net + Database (SqlServer on Azure) + Azure Service Bus
+Angular + .Net + Database (SqlServer on Azure) + Azure Service Bus + Azure Blob Storage
 
 This is just an example to learn something about Azure, so the code is not perfect.
 
